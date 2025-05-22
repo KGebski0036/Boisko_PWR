@@ -1,1 +1,18 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
 /* You can add global styles to this file, and also import other style files */
+nav {
+  background: #f8f8f8;
+  padding: 10px;
+}
+nav a {
+  margin-right: 10px;
+  text-decoration: none;
+  color: #007bff;
+}
+nav a:hover {
+  text-decoration: underline;
+}
