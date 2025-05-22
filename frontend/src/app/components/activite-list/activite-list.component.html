@@ -1,0 +1,14 @@
+<div class="container">
+  <h2>Activite List</h2>
+
+  <div class="form-group">
+    <input [(ngModel)]="newActiviteName" placeholder="New Activite name" class="form-control" />
+    <button (click)="addActivite()" class="btn btn-primary mt-2">Add Activite</button>
+  </div>
+
+  <ul class="list-group mt-4">
+    <li *ngFor="let Activite of activites" class="list-group-Activite">
+      {{ Activite.name }}
+    </li>
+  </ul>
+</div>
