@@ -1,0 +1,50 @@
+<div class="container mt-5">
+  <h2 class="mb-4">Add New Field</h2>
+
+  <form [formGroup]="fieldForm" (ngSubmit)="onSubmit()">
+    <div class="mb-3">
+      <label class="form-label">Name</label>
+      <input type="text" class="form-control" formControlName="name" />
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">City</label>
+      <input type="text" class="form-control" formControlName="city" />
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Address</label>
+      <input type="text" class="form-control" formControlName="address" />
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Max Capacity</label>
+      <input type="number" class="form-control" formControlName="max_capacity" />
+    </div>
+
+    <div class="mb-3">
+    <label class="form-label">Activity</label>
+    <select class="form-select" formControlName="activityID">
+        <option [ngValue]="null" disabled selected>Select an activity</option>
+        <option *ngFor="let activity of activities" [value]="activity.id">
+        {{ activity.name }}
+        </option>
+    </select>
+    </div>
+
+    <div class="mb-3">
+        <button type="submit" class="btn btn-primary">Submit</button><br>
+    </div>
+    <div class="mb-3">
+        <button type="button" [routerLink]="['/fields']"  class="btn btn-secondary">back</button>
+    </div>
+
+    <div *ngIf="submitted && fieldForm.invalid" class="text-danger mt-2">
+      Please fill out all required fields.
+    </div>
+
+    <div *ngIf="success" class="alert alert-success mt-2">
+      Field successfully added!
+    </div>
+  </form>
+</div>

@@ -17,14 +17,14 @@ def create_activitie(db: Session, name: str):
 def get_fields(db: Session):
     return db.query(Fields).all()
 
-def create_field(db: Session, name: str, city: str, address: str, max_capacity: int, is_verified: bool, activity_id: int):
+def create_field(db: Session, name: str, city: str, address: str, max_capacity: int, activityID: int):
     field = Fields(
         name=name,
         city=city,
         address=address,
         max_capacity=max_capacity,
-        is_verified=is_verified,
-        activityID=activity_id
+        is_verified=False,
+        activityID=activityID
     )
     db.add(field)
     db.commit()
@@ -63,10 +63,10 @@ def create_sports_game(
 def get_teams(db: Session):
     return db.query(Teams).all()
 
-def create_team(db: Session, team_name: str, activity_id: int, amount_players: int, amount_points: int, is_verified: bool = None):
+def create_team(db: Session, team_name: str, activityID: int, amount_players: int, amount_points: int, is_verified: bool = None):
     team = Teams(
         team_name=team_name,
-        activity_id=activity_id,
+        activityID=activityID,
         amount_players=amount_players,
         amount_points=amount_points,
         is_verified=is_verified

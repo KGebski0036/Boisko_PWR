@@ -6,9 +6,19 @@
     <button (click)="addActivite()" class="btn btn-primary mt-2">Add Activite</button>
   </div>
 
-  <ul class="list-group mt-4">
-    <li *ngFor="let Activite of activites" class="list-group-Activite">
-      {{ Activite.name }}
-    </li>
-  </ul>
+  <table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">Id</th>
+      <th scope="col">Name</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="table-primary" *ngFor="let Activite of activites">
+        <th scope="row">{{ Activite.id }}</th>
+        <td>{{ Activite.name }}</td>
+    </tr>
+
+  </tbody>
+  </table>
 </div>

@@ -8,7 +8,7 @@ router = APIRouter()
 
 class TeamCreate(BaseModel):
     team_name: str
-    activity_id: int
+    activityID: int
     amount_players: int
     amount_points: int
     is_verified: bool | None = None

@@ -1,0 +1,33 @@
+<div class="container">
+  <h2>Field List</h2>
+
+
+  <button (click)="addField()" class="btn btn-primary mt-2">Add Field</button>
+
+  <table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">Id</th>
+      <th scope="col">Name</th>
+      <th scope="col">City</th>
+      <th scope="col">Address</th>
+      <th scope="col">Max capacity</th>
+      <th scope="col">Activity</th>
+      <th scope="col">verified?</th>
+
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="table-primary" *ngFor="let Field of fields">
+        <th scope="row">{{ Field.id }}</th>
+        <td>{{ Field.name }}</td>
+        <td>{{ Field.city }}</td>
+        <td>{{ Field.address }}</td>
+        <td>{{ Field.max_capacity }}</td>
+        <td>{{ getActivityName(Field.activityID) }}</td>
+        <td><button *ngIf="!Field.is_verified" (click)="verify(Field.id)" class="btn btn-success">verify</button></td>
+    </tr>
+
+  </tbody>
+  </table>
+</div>

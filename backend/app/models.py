@@ -19,13 +19,13 @@ class Fields(Base):
     __tablename__ = "fields"
 
     id = Column(Integer, primary_key=True, index=True)
-    name = Column(String(255), unique=True, index=True)
-    city = Column(String(255), index=True)
-    address = Column(String(255), index=True)
-    max_capacity = Column(Integer, index=True)
-    is_verified = Column(Boolean, index=True)
+    name = Column(String(255), nullable=False)
+    city = Column(String(255), nullable=False)
+    address = Column(String(255), nullable=False)
+    max_capacity = Column(Integer, nullable=False)
+    is_verified = Column(Boolean, nullable=True)
     
-    activityID = Column(Integer, ForeignKey("activities.id"), index=True)
+    activityID = Column(Integer, ForeignKey("activities.id"), nullable=False, index=True)
     
     activity = relationship("Activities", back_populates="fields")
     
@@ -49,7 +49,7 @@ class Teams(Base):
 
     team_id = Column(Integer, primary_key=True, index=True)
     team_name = Column(String(255), nullable=False)
-    activity_id = Column(Integer, ForeignKey("activities.id"), nullable=False, index=True)
+    activityID = Column(Integer, ForeignKey("activities.id"), nullable=False, index=True)
     amount_players = Column(Integer, nullable=False)
     amount_points = Column(Integer, nullable=False)
     is_verified = Column(Boolean, nullable=True)
