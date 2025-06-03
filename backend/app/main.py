@@ -5,6 +5,8 @@ from .database import SessionLocal, engine
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 
+from app.controllers import fields_controller, activities_controller, sport_game_controller, teams_controller, teams_in_game_controller
+
 models.Base.metadata.create_all(bind=engine)
 
 app = FastAPI()
@@ -17,24 +19,8 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-def get_db():
-    db = SessionLocal()
-    try:
-        yield db
-    finally:
-        db.close()
-
-@app.get("/activities/")
-def get_activities(db: Session = Depends(get_db)):
-    return crud.get_activities(db)
-
-class ActivityCreate(BaseModel):
-    name: str
-
-@app.post("/activities/")
-def add_activity(payload: ActivityCreate, db: Session = Depends(get_db)):
-    return crud.create_activitie(db, payload.name)
-
-@app.get("/home")
-def home():
-    return {"msg": "it works"}
+app.include_router(fields_controller.router)
+app.include_router(activities_controller.router)
+app.include_router(sport_game_controller.router)
+app.include_router(teams_controller.router)
+app.include_router(teams_in_game_controller.router)
