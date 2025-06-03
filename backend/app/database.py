@@ -5,8 +5,6 @@ import os
 from sqlalchemy.exc import OperationalError
 
 DATABASE_URL = os.getenv("DATABASE_URL")
-
-# Retry DB connection
 MAX_RETRIES = 10
 SLEEP_SECONDS = 3
 
