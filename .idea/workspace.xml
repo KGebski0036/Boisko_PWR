@@ -4,14 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a9e327e0-c344-45c7-b859-61a09c0f4688" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/code Boisko.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/styles.css" afterDir="false" />
+    <list default="true" id="a9e327e0-c344-45c7-b859-61a09c0f4688" name="Changes" comment="Zmiana loga i tytuły strony. Dodanie globalnego tła strony. Poprawa nazwy navbar">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/pages/home/home.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/pages/home/home.component.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -74,8 +69,17 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1749122411483</updated>
-      <workItem from="1749122412683" duration="2794000" />
+      <workItem from="1749122412683" duration="6230000" />
     </task>
+    <task id="LOCAL-00001" summary="Zmiana loga i tytuły strony. Dodanie globalnego tła strony. Poprawa nazwy navbar">
+      <option name="closed" value="true" />
+      <created>1749125442859</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1749125442859</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -91,5 +95,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Zmiana loga i tytuły strony. Dodanie globalnego tła strony. Poprawa nazwy navbar" />
+    <option name="LAST_COMMIT_MESSAGE" value="Zmiana loga i tytuły strony. Dodanie globalnego tła strony. Poprawa nazwy navbar" />
   </component>
 </project>
