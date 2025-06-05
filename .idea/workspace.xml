@@ -4,13 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a9e327e0-c344-45c7-b859-61a09c0f4688" name="Changes" comment="Dodanie .idea do .gitignore">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/components/field-list/field-list.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/components/field-list/field-list.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/components/verified-fields/verified-fields.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/components/verified-fields/verified-fields.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/pages/add-field/add-field.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/pages/add-field/add-field.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/pages/home/home.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/pages/home/home.component.html" afterDir="false" />
-    </list>
+    <list default="true" id="a9e327e0-c344-45c7-b859-61a09c0f4688" name="Changes" comment="Poprawa formatowania strony i formularza Fields" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -72,7 +66,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1749122411483</updated>
-      <workItem from="1749122412683" duration="8939000" />
+      <workItem from="1749122412683" duration="9422000" />
     </task>
     <task id="LOCAL-00001" summary="Zmiana loga i tytuły strony. Dodanie globalnego tła strony. Poprawa nazwy navbar">
       <option name="closed" value="true" />
@@ -98,7 +92,15 @@
       <option name="project" value="LOCAL" />
       <updated>1749130647698</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Poprawa formatowania strony i formularza Fields">
+      <option name="closed" value="true" />
+      <created>1749134128799</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1749134128799</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -131,6 +133,7 @@
     <MESSAGE value="Zmiana loga i tytuły strony. Dodanie globalnego tła strony. Poprawa nazwy navbar" />
     <MESSAGE value="Zrobiona główna strona według projektu: teskt powitalny, zabezpieczenie i działające przyciski do podstron" />
     <MESSAGE value="Dodanie .idea do .gitignore" />
-    <option name="LAST_COMMIT_MESSAGE" value="Dodanie .idea do .gitignore" />
+    <MESSAGE value="Poprawa formatowania strony i formularza Fields" />
+    <option name="LAST_COMMIT_MESSAGE" value="Poprawa formatowania strony i formularza Fields" />
   </component>
 </project>
