@@ -4,8 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a9e327e0-c344-45c7-b859-61a09c0f4688" name="Changes" comment="Zmiana loga i tytuły strony. Dodanie globalnego tła strony. Poprawa nazwy navbar">
+    <list default="true" id="a9e327e0-c344-45c7-b859-61a09c0f4688" name="Changes" comment="Dodanie .idea do .gitignore">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/components/field-list/field-list.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/components/field-list/field-list.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/components/verified-fields/verified-fields.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/components/verified-fields/verified-fields.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/pages/add-field/add-field.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/pages/add-field/add-field.component.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/app/pages/home/home.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/pages/home/home.component.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -69,7 +72,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1749122411483</updated>
-      <workItem from="1749122412683" duration="6230000" />
+      <workItem from="1749122412683" duration="8939000" />
     </task>
     <task id="LOCAL-00001" summary="Zmiana loga i tytuły strony. Dodanie globalnego tła strony. Poprawa nazwy navbar">
       <option name="closed" value="true" />
@@ -79,7 +82,23 @@
       <option name="project" value="LOCAL" />
       <updated>1749125442859</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Zrobiona główna strona według projektu: teskt powitalny, zabezpieczenie i działające przyciski do podstron">
+      <option name="closed" value="true" />
+      <created>1749130559281</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1749130559281</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Dodanie .idea do .gitignore">
+      <option name="closed" value="true" />
+      <created>1749130647698</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1749130647698</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -90,7 +109,19 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="Pawel_branch" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
@@ -98,6 +129,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Zmiana loga i tytuły strony. Dodanie globalnego tła strony. Poprawa nazwy navbar" />
-    <option name="LAST_COMMIT_MESSAGE" value="Zmiana loga i tytuły strony. Dodanie globalnego tła strony. Poprawa nazwy navbar" />
+    <MESSAGE value="Zrobiona główna strona według projektu: teskt powitalny, zabezpieczenie i działające przyciski do podstron" />
+    <MESSAGE value="Dodanie .idea do .gitignore" />
+    <option name="LAST_COMMIT_MESSAGE" value="Dodanie .idea do .gitignore" />
   </component>
 </project>
