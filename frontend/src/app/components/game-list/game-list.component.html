@@ -1,1 +1,19 @@
-<p>game-list works!</p>
+<div class="card mt-4">
+  <div class="card-header bg-warning text-dark">
+    Oczekujące turnieje do zatwierdzenia
+  </div>
+
+  <ul class="list-group list-group-flush">
+    <li *ngFor="let game of unverifiedGames" class="list-group-item d-flex justify-content-between align-items-center">
+      <div>
+        <strong>{{ game.game_name }}</strong><br />
+        {{ game.start_date | date:'short' }} – {{ game.end_date | date:'short' }}
+      </div>
+      <button class="btn btn-success btn-sm" (click)="verifyGame(game.game_id)">Zatwierdź</button>
+    </li>
+  </ul>
+
+  <div *ngIf="unverifiedGames.length === 0" class="p-3 text-muted">
+    Brak turniejów do zatwierdzenia.
+  </div>
+</div>
