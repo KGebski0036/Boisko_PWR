@@ -1,0 +1,23 @@
+.teams-container {
+  background-image: url('/assets/background.webp');
+  background-size: cover;
+  padding: 20px;
+  min-height: 100vh;
+}
+
+.teams-table {
+  width: 100%;
+  background-color: white;
+  opacity: 0.95;
+  border-collapse: collapse;
+}
+
+.teams-table th, .teams-table td {
+  padding: 10px;
+  border: 1px solid #ddd;
+}
+
+.add-button {
+  float: right;
+  margin-bottom: 10px;
+}
