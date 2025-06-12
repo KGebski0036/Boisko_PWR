@@ -1,11 +1,19 @@
-import { Component } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-teams-list',
-  imports: [],
   templateUrl: './teams-list.component.html',
-  styleUrl: './teams-list.component.css'
+  styleUrls: ['./teams-list.component.css']
 })
-export class TeamsListComponent {
+export class TeamsListComponent implements OnInit {
+  teams: any[] = [];
 
+  constructor(private http: HttpClient) {}
+
+  ngOnInit(): void {
+    this.http.get<any[]>('http://localhost:8000/teams/view').subscribe(data => {
+      this.teams = data;
+    });
+  }
 }

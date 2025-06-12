@@ -96,3 +96,15 @@ def create_team_in_game(
     db.commit()
     db.refresh(entry)
     return entry
+def get_all_verified_teams(db: Session):
+    return (
+        db.query(
+            Teams.team_name,
+            Teams.amount_players,
+            Teams.amount_points,
+            Activities.name.label("activity_name")
+        )
+        .join(Activities, Teams.activityID == Activities.id)
+        .filter(Teams.is_verified == True)
+        .all()
+    )

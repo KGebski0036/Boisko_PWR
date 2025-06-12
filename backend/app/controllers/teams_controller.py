@@ -3,6 +3,7 @@ from sqlalchemy.orm import Session
 from pydantic import BaseModel
 import app.crud as crud
 from app.database import get_db
+from app import schemas
 
 router = APIRouter()
 
@@ -20,3 +21,7 @@ def get_teams(db: Session = Depends(get_db)):
 @router.post("/teams/")
 def add_team(payload: TeamCreate, db: Session = Depends(get_db)):
     return crud.create_team(db, **payload.dict())
+
+@router.get("/teams/view", response_model=list[schemas.TeamOut])
+def get_verified_teams_view(db: Session = Depends(get_db)):
+    return crud.get_all_verified_teams(db)

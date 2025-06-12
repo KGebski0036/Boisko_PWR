@@ -1,1 +1,24 @@
-<p>teams-list works!</p>
+<div class="teams-container">
+  <button class="add-button">DODAJ</button>
+  <table class="teams-table">
+    <thead>
+      <tr>
+        <th>Nazwa Drużyny</th>
+        <th>Rodzaj aktywności</th>
+        <th>Liczba graczy</th>
+        <th>Liczba punktów</th>
+        <th>Szczegóły</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let team of teams">
+        <td>{{ team.team_name }}</td>
+        <td>{{ team.activity_name }}</td>
+        <td>{{ team.amount_players }}</td>
+        <td>{{ team.amount_points }}</td>
+        <td><button>Szczegóły</button></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
