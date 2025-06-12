@@ -1,0 +1,53 @@
+<div class="container mt-5">
+  <h2 class="text-primary">Dodaj nową grę lub turniej</h2>
+
+  <form [formGroup]="gameForm" (ngSubmit)="onSubmit()" class="mt-4">
+    <div class="row g-3">
+      <div class="col-md-6">
+        <label for="game_name" class="form-label">Nazwa gry</label>
+        <input id="game_name" type="text" class="form-control" formControlName="game_name" />
+      </div>
+
+      <div class="col-md-6">
+        <label for="field_id" class="form-label">Wybierz boisko</label>
+        <select id="field_id" class="form-select" formControlName="field_id">
+          <option [value]="null" disabled selected>Wybierz...</option>
+          <option *ngFor="let field of fields" [value]="field.id">
+            {{ field.name }}
+          </option>
+        </select>
+      </div>
+
+      <div class="col-md-6">
+        <label for="start_date" class="form-label">Data rozpoczęcia</label>
+        <input id="start_date" type="datetime-local" class="form-control" formControlName="start_date" />
+      </div>
+
+      <div class="col-md-6">
+        <label for="end_date" class="form-label">Data zakończenia</label>
+        <input id="end_date" type="datetime-local" class="form-control" formControlName="end_date" />
+      </div>
+
+      <div class="col-md-6">
+        <label for="booking_type" class="form-label">Typ rezerwacji</label>
+        <select id="booking_type" class="form-select" formControlName="booking_type">
+          <option value="NORMAL">NORMAL</option>
+          <option value="TURNAMENT">TURNAMENT</option>
+        </select>
+      </div>
+
+      <div class="col-md-6">
+        <label for="weight_tournament" class="form-label">Waga turnieju</label>
+        <input id="weight_tournament" type="number" class="form-control" formControlName="weight_tournament" />
+      </div>
+    </div>
+
+    <div class="mt-4">
+      <button class="btn btn-primary" type="submit" [disabled]="!gameForm.valid">Dodaj</button>
+    </div>
+
+    <div *ngIf="success" class="alert alert-success mt-3">
+      Gra została dodana! Przekierowano do listy.
+    </div>
+  </form>
+</div>
