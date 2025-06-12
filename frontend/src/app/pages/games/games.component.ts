@@ -31,7 +31,7 @@ export class GamesComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadGames();
-    this.loadTeams();
+    //this.loadTeams();
   }
 
   loadGames(): void {
