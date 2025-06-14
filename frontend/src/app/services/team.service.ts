@@ -1,4 +1,4 @@
-// team.service.ts
+// frontend/src/app/services/team.service.ts
 
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
@@ -13,7 +13,16 @@ export interface Team {
   is_verified: boolean;
 }
 
-@Injectable({ providedIn: 'root' })
+export interface AddTeam {
+  team_name: string;
+  activityID: number;
+  amount_players: number;
+  amount_points: number;
+}
+
+@Injectable({
+  providedIn: 'root',
+})
 export class TeamService {
   private apiUrl = 'http://localhost:8000/teams/';
 
@@ -21,5 +30,14 @@ export class TeamService {
 
   getTeams(): Observable<Team[]> {
     return this.http.get<Team[]>(this.apiUrl);
+  }
+
+  addTeam(team: AddTeam): Observable<Team> {
+    return this.http.post<Team>(this.apiUrl, team);
+  }
+
+  /** Oznacz drużynę jako zweryfikowaną */
+  verifyTeam(teamId: number): Observable<Team> {
+    return this.http.patch<Team>(`${this.apiUrl}${teamId}/verify`, {});
   }
 }

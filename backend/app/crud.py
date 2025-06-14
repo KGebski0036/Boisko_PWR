@@ -1,7 +1,8 @@
 from sqlalchemy.orm import Session
 from .models import Activities, Fields, SportsGames, BookingTypeEnum, Teams, TeamsInGame
 from datetime import datetime
-
+from sqlalchemy.orm import Session
+from .models import Teams
 
 def get_activities(db: Session):
     return db.query(Activities).all()
@@ -63,7 +64,14 @@ def create_sports_game(
 def get_teams(db: Session):
     return db.query(Teams).all()
 
-def create_team(db: Session, team_name: str, activityID: int, amount_players: int, amount_points: int, is_verified: bool = None):
+def create_team(
+    db: Session,
+    team_name: str,
+    activityID: int,
+    amount_players: int,
+    amount_points: int,
+    is_verified: bool = False
+):
     team = Teams(
         team_name=team_name,
         activityID=activityID,
