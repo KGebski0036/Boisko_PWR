@@ -1,16 +1,7 @@
-
 <div class="container">
-
   <div class="d-flex justify-content-between align-items-center mb-3">
     <h2>Lista Gier i Turniejów</h2>
     <button class="btn btn-primary" (click)="goToAddGame()">Dodaj grę / turniej</button>
-  </div>
-
-  <div class="mb-4">
-    <label for="teamSelect" class="form-label">Wybierz zespół, którym chcesz dołączyć:</label>
-    <select id="teamSelect" class="form-select w-auto" [formControl]="teamIdToJoin">
-      <option *ngFor="let team of teams" [value]="team.team_id">{{ team.team_name }}</option>
-    </select>
   </div>
 
   <table class="table table-hover table-striped">
@@ -22,7 +13,7 @@
         <th scope="col">Start</th>
         <th scope="col">Koniec</th>
         <th scope="col">Typ</th>
-        <th scope="col">Turniej?</th>
+        <th scope="col">Status</th>
         <th scope="col">Akcje</th>
       </tr>
     </thead>
@@ -30,18 +21,18 @@
       <tr *ngFor="let game of games">
         <th scope="row">{{ game.game_id }}</th>
         <td>{{ game.game_name }}</td>
-        <td>{{ game.field_id }}</td>
+        <td>{{ getFieldName(game.field_id) }}</td>
         <td>{{ game.start_date | date: 'short' }}</td>
         <td>{{ game.end_date | date: 'short' }}</td>
         <td>{{ game.booking_type }}</td>
         <td>
-          <span *ngIf="game.is_tournament_verified" class="text-success">✔️</span>
-          <span *ngIf="!game.is_tournament_verified" class="text-muted">—</span>
+          <span *ngIf="game.is_tournament_verified" class="badge bg-success">Zatwierdzony</span>
+          <span *ngIf="!game.is_tournament_verified" class="badge bg-warning">Oczekuje</span>
         </td>
         <td>
-          <button class="btn btn-sm btn-success" (click)="join(game.game_id)">
-            Dołącz
-          </button>
+          <a [routerLink]="['/games', game.game_id]" class="btn btn-sm btn-info">
+            Szczegóły
+          </a>
         </td>
       </tr>
     </tbody>
