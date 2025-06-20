@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 export interface Team {
   team_id: number;
   team_name: string;
-  activityID: number;
+  activity_id: number;
   amount_players: number;
   amount_points: number;
   is_verified: boolean;
@@ -15,9 +15,8 @@ export interface Team {
 
 export interface AddTeam {
   team_name: string;
-  activityID: number;
+  activity_id: number;
   amount_players: number;
-  amount_points: number;
 }
 
 @Injectable({
@@ -33,6 +32,7 @@ export class TeamService {
   }
 
   addTeam(team: AddTeam): Observable<Team> {
+    console.log(team);
     return this.http.post<Team>(this.apiUrl, team);
   }
 

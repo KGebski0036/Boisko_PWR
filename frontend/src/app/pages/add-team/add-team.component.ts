@@ -29,9 +29,8 @@ export class AddTeamComponent implements OnInit {
   ngOnInit(): void {
     this.teamForm = this.fb.group({
       team_name: ['', Validators.required],
-      activityID: [null, Validators.required],
+      activity_id: [null, Validators.required],
       amount_players: [1, [Validators.required, Validators.min(1)]],
-      amount_points: [0, [Validators.required, Validators.min(0)]]
     });
 
     this.activityService.getActivites().subscribe({

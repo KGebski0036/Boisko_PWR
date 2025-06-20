@@ -67,17 +67,15 @@ def get_teams(db: Session):
 def create_team(
     db: Session,
     team_name: str,
-    activityID: int,
+    activity_id: int,
     amount_players: int,
-    amount_points: int,
-    is_verified: bool = False
 ):
     team = Teams(
         team_name=team_name,
-        activityID=activityID,
+        activity_id=activity_id,
         amount_players=amount_players,
-        amount_points=amount_points,
-        is_verified=is_verified
+        amount_points=0,
+        is_verified=False
     )
     db.add(team)
     db.commit()

@@ -11,10 +11,8 @@ router = APIRouter(tags=["teams"])
 
 class TeamCreate(BaseModel):
     team_name: str
-    activityID: int
+    activity_id: int
     amount_players: int
-    amount_points: int
-    is_verified: bool | None = None
 
 @router.get("/teams/")
 def get_teams(db: Session = Depends(get_db)):
@@ -25,9 +23,7 @@ def get_teams(db: Session = Depends(get_db)):
 
 @router.post("/teams/")
 def add_team(payload: TeamCreate, db: Session = Depends(get_db)):
-    """
-    Utwórz nową drużynę.
-    """
+    print("🛠 Payload received:", payload)
     return crud.create_team(db, **payload.dict())
 
 @router.patch("/teams/{team_id}/verify")
