@@ -8,6 +8,7 @@ import { TeamsComponent } from './pages/teams/teams.component';
 import { AdminComponent } from './pages/admin/admin.component';
 import { AddFieldComponent } from './pages/add-field/add-field.component';
 import { AddGameComponent } from './pages/add-game/add-game.component';
+import { GameDetailsComponent } from './pages/game-details/game-details.component';
 import { AddTeamComponent } from './pages/add-team/add-team.component';
 
 export const routes: Routes = [
@@ -19,5 +20,6 @@ export const routes: Routes = [
   { path: 'admin', component: AdminComponent },
   { path: 'addfield', component: AddFieldComponent },
   { path: 'addgame', component: AddGameComponent },
+  { path: 'games/:id', component: GameDetailsComponent }
   { path: '**', redirectTo: '', pathMatch: 'full' }
 ];

@@ -1,53 +1,74 @@
 <div class="container mt-5">
-  <h2 class="text-primary">Dodaj nową grę lub turniej</h2>
+  <div class="card shadow-lg">
+    <div class="card-body">
+      <h2 class="card-title text-primary mb-4">Dodaj nową grę lub turniej</h2>
 
-  <form [formGroup]="gameForm" (ngSubmit)="onSubmit()" class="mt-4">
-    <div class="row g-3">
-      <div class="col-md-6">
-        <label for="game_name" class="form-label">Nazwa gry</label>
-        <input id="game_name" type="text" class="form-control" formControlName="game_name" />
-      </div>
+      <!-- Zakładki do wyboru typu -->
+      <ul class="nav nav-tabs mb-4">
+        <li class="nav-item">
+          <button class="nav-link" [class.active]="bookingType === 'NORMAL'" (click)="setBookingType('NORMAL')">
+            Zwykła gra
+          </button>
+        </li>
+        <li class="nav-item">
+          <button class="nav-link" [class.active]="bookingType === 'TOURNAMENT'" (click)="setBookingType('TOURNAMENT')">
+            Turniej
+          </button>
+        </li>
+      </ul>
 
-      <div class="col-md-6">
-        <label for="field_id" class="form-label">Wybierz boisko</label>
-        <select id="field_id" class="form-select" formControlName="field_id">
-          <option [value]="null" disabled selected>Wybierz...</option>
-          <option *ngFor="let field of fields" [value]="field.id">
-            {{ field.name }}
-          </option>
-        </select>
-      </div>
+      <!-- Formularz -->
+      <form [formGroup]="gameForm" (ngSubmit)="onSubmit()">
+        <!-- Pola wspólne dla obu typów -->
+        <div class="row g-3">
+          <div class="col-md-12">
+            <label for="game_name" class="form-label">Nazwa rozgrywki</label>
+            <input id="game_name" type="text" class="form-control" formControlName="game_name" placeholder="np. Mecz towarzyski, Puchar Lata">
+          </div>
 
-      <div class="col-md-6">
-        <label for="start_date" class="form-label">Data rozpoczęcia</label>
-        <input id="start_date" type="datetime-local" class="form-control" formControlName="start_date" />
-      </div>
+          <div class="col-md-12">
+            <label for="field_id" class="form-label">Wybierz boisko</label>
+            <select id="field_id" class="form-select" formControlName="field_id">
+              <option [ngValue]="null" disabled selected>Wybierz dostępne boisko...</option>
+              <option *ngFor="let field of verifiedFields" [value]="field.id">
+                {{ field.name }} ({{ field.city }}, {{ field.address }})
+              </option>
+            </select>
+          </div>
 
-      <div class="col-md-6">
-        <label for="end_date" class="form-label">Data zakończenia</label>
-        <input id="end_date" type="datetime-local" class="form-control" formControlName="end_date" />
-      </div>
+          <div class="col-md-6">
+            <label for="start_date" class="form-label">Data rozpoczęcia</label>
+            <input id="start_date" type="datetime-local" class="form-control" formControlName="start_date">
+          </div>
 
-      <div class="col-md-6">
-        <label for="booking_type" class="form-label">Typ rezerwacji</label>
-        <select id="booking_type" class="form-select" formControlName="booking_type">
-          <option value="NORMAL">NORMAL</option>
-          <option value="TURNAMENT">TURNAMENT</option>
-        </select>
-      </div>
+          <div class="col-md-6">
+            <label for="end_date" class="form-label">Data zakończenia</label>
+            <input id="end_date" type="datetime-local" class="form-control" formControlName="end_date">
+          </div>
+        </div>
 
-      <div class="col-md-6">
-        <label for="weight_tournament" class="form-label">Waga turnieju</label>
-        <input id="weight_tournament" type="number" class="form-control" formControlName="weight_tournament" />
-      </div>
+        <!-- Pole widoczne tylko dla turnieju -->
+        <div *ngIf="bookingType === 'TOURNAMENT'" class="mt-4">
+          <label for="weight_tournament" class="form-label">Waga turnieju (punkty do rankingu)</label>
+          <input id="weight_tournament" type="number" class="form-control" formControlName="weight_tournament" placeholder="np. 100">
+          <div class="form-text">Waga turnieju określa jego prestiż i liczbę punktów do zdobycia w rankingu.</div>
+        </div>
+
+        <!-- Przyciski i komunikaty -->
+        <div class="mt-4">
+          <button class="btn btn-primary" type="submit" [disabled]="!gameForm.valid">
+            <span *ngIf="bookingType === 'NORMAL'">Zarezerwuj i dodaj grę</span>
+            <span *ngIf="bookingType === 'TOURNAMENT'">Zgłoś turniej do weryfikacji</span>
+          </button>
+        </div>
+
+        <div *ngIf="success" class="alert alert-success mt-3">
+          Rozgrywka została pomyślnie dodana i oczekuje na weryfikację administratora.
+        </div>
+         <div *ngIf="error" class="alert alert-danger mt-3">
+          <strong>Błąd:</strong> {{ error }}
+        </div>
+      </form>
     </div>
-
-    <div class="mt-4">
-      <button class="btn btn-primary" type="submit" [disabled]="!gameForm.valid">Dodaj</button>
-    </div>
-
-    <div *ngIf="success" class="alert alert-success mt-3">
-      Gra została dodana! Przekierowano do listy.
-    </div>
-  </form>
+  </div>
 </div>

@@ -5,17 +5,22 @@ import { Router } from '@angular/router';
 import { GameService, AddGame } from '../../services/game.service';
 import { FieldService, Field } from '../../services/field.service';
 
+type BookingType = 'NORMAL' | 'TOURNAMENT';
+
 @Component({
   selector: 'app-add-game',
   standalone: true,
   templateUrl: './add-game.component.html',
-  styleUrl: './add-game.component.css',
+  styleUrls: ['./add-game.component.css'],
   imports: [CommonModule, ReactiveFormsModule],
 })
 export class AddGameComponent implements OnInit {
   gameForm!: FormGroup;
   success = false;
-  fields: Field[] = [];
+  error: string | null = null;
+  verifiedFields: Field[] = [];
+  bookingType: BookingType = 'NORMAL';
+  successMessage = '';
 
   constructor(
     private fb: FormBuilder,
@@ -30,30 +35,71 @@ export class AddGameComponent implements OnInit {
       field_id: [null, Validators.required],
       start_date: ['', Validators.required],
       end_date: ['', Validators.required],
-      booking_type: ['NORMAL', Validators.required],
       weight_tournament: [null]
     });
 
+    this.loadVerifiedFields();
+  }
+
+  loadVerifiedFields(): void {
     this.fieldService.getFields().subscribe({
-      next: data => this.fields = data,
-      error: err => console.error('Błąd ładowania boisk', err)
+      next: data => {
+        this.verifiedFields = data.filter(field => field.is_verified);
+      },
+      error: err => console.error('Błąd ładowania zweryfikowanych boisk', err)
     });
   }
 
-onSubmit(): void {
-  if (this.gameForm.valid) {
+  setBookingType(type: BookingType): void {
+    this.bookingType = type;
+    const weightControl = this.gameForm.get('weight_tournament');
+
+    if (type === 'TOURNAMENT') {
+      weightControl?.setValidators([Validators.required, Validators.min(1)]);
+    } else {
+      weightControl?.clearValidators();
+      weightControl?.reset();
+    }
+    weightControl?.updateValueAndValidity();
+  }
+
+  onSubmit(): void {
+    this.success = false;
+    this.error = null;
+
+    if (this.gameForm.invalid) {
+      this.error = "Proszę wypełnić wszystkie wymagane pola poprawnie.";
+      return;
+    }
+
+    const { start_date, end_date, weight_tournament } = this.gameForm.value;
+
+    if (new Date(end_date) <= new Date(start_date)) {
+      this.error = "Data zakończenia musi być późniejsza niż data rozpoczęcia.";
+      return;
+    }
+
+    const isTournament = this.bookingType === 'TOURNAMENT';
+
     const gameData: AddGame = {
       ...this.gameForm.value,
-      is_tournament_verified: false
+      booking_type: this.bookingType,
+      is_tournament_verified: !isTournament,
+      weight_tournament: isTournament ? weight_tournament : null
     };
+
     this.gameService.addGame(gameData).subscribe({
       next: () => {
         this.success = true;
-        this.router.navigate(['/games']);
+        this.successMessage = isTournament
+          ? "Turniej został zgłoszony i oczekuje na weryfikację administratora."
+          : "Gra została pomyślnie dodana i jest widoczna na liście.";
+        this.gameForm.reset();
+        setTimeout(() => this.router.navigate(['/games']), 2500);
       },
-      error: err => console.error('Error adding game', err)
+      error: err => {
+        this.error = err.error?.detail || 'Wystąpił nieznany błąd serwera.';
+      }
     });
   }
-}
-
 }

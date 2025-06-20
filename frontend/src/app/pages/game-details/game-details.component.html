@@ -1,0 +1,49 @@
+<div class="container mt-5">
+  <div *ngIf="game; else loading" class="details-wrapper">
+    <!-- GÓRNA KARTA: Informacje o grze i akcje -->
+    <div class="card shadow-lg p-3 mb-4">
+      <div class="card-body">
+        <h1 class="card-title display-5">{{ game.game_name }}</h1>
+        <p class="card-subtitle mb-3 text-muted fs-5">
+          {{ game.field.name }} - {{ game.start_date | date:'dd.MM.yyyy HH:mm' }}
+        </p>
+
+        <!-- Sekcja dołączania i przycisk admina, widoczne TYLKO dla turniejów -->
+        <div *ngIf="game.booking_type === 'TOURNAMENT'" class="d-flex flex-wrap align-items-center gap-3 mt-4">
+          <div class="input-group" style="max-width: 400px;">
+            <select class="form-select" [formControl]="teamToJoin" id="teamSelect">
+              <option [ngValue]="null" disabled>Wybierz drużynę...</option>
+              <option *ngFor="let team of availableTeams" [value]="team.team_id">{{ team.team_name }}</option>
+            </select>
+            <button class="btn btn-dark" type="button" (click)="joinTournament()">Dołącz drużyną</button>
+          </div>
+
+          <button *ngIf="isModerator" class="btn btn-secondary ms-auto" (click)="endTournament()">
+            Zakończ turniej i wpisz wyniki (Tylko Moderator)
+          </button>
+        </div>
+
+        <!-- Informacja dla zwykłych gier (rezerwacji) -->
+        <div *ngIf="game.booking_type === 'NORMAL'" class="alert alert-info mt-4">
+          To jest rezerwacja boiska (zwykła gra). Dołączanie nie jest wymagane.
+        </div>
+
+      </div>
+    </div>
+
+    <!-- DOLNA KARTA: Lista uczestników - widoczna TYLKO dla turniejów -->
+    <div *ngIf="game.booking_type === 'TOURNAMENT'" class="card shadow-lg p-3">
+      <div class="card-body">
+        <h3 class="card-title">Zapisane drużyny ({{ game.teams_in_game.length }})</h3>
+        <hr>
+        <div *ngIf="game.teams_in_game.length > 0; else noTeams" class="list-group list-group-flush">
+          <div *ngFor="let entry of game.teams_in_game" class="list-group-item border-0">
+            <h5>{{ entry.team.team_name }}</h5>
+          </div>
+        </div>
+        <ng-template #noTeams><p class="text-muted">Brak zapisanych drużyn.</p></ng-template>
+      </div>
+    </div>
+  </div>
+  <ng-template #loading><p class="text-center fs-3">Ładowanie danych...</p></ng-template>
+</div>
