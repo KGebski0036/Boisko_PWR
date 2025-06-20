@@ -1,6 +1,8 @@
 from sqlalchemy.orm import Session, joinedload
 from .models import Activities, Fields, SportsGames, Teams, TeamsInGame
 from datetime import datetime
+from sqlalchemy.orm import Session
+from .models import Teams
 
 def get_activities(db: Session):
     return db.query(Activities).all()
@@ -85,10 +87,18 @@ def get_teams(db: Session):
 def get_team_by_id(db: Session, team_id: int):
     return db.query(Teams).filter(Teams.team_id == team_id).first()
 
-def create_team(db: Session, team_name: str, activityID: int, amount_players: int, amount_points: int, is_verified: bool | None = None):
-    db_team = Teams(
-        team_name=team_name, activityID=activityID, amount_players=amount_players,
-        amount_points=amount_points, is_verified=is_verified
+def create_team(
+    db: Session,
+    team_name: str,
+    activity_id: int,
+    amount_players: int,
+):
+    team = Teams(
+        team_name=team_name,
+        activity_id=activity_id,
+        amount_players=amount_players,
+        amount_points=0,
+        is_verified=False
     )
     db.add(db_team)
     db.commit()

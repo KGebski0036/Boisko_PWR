@@ -1,0 +1,56 @@
+<!-- frontend/src/app/pages/add-team/add-team.component.html -->
+
+<div class="container mt-4">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <h3 class="mb-4">Dodaj Drużynę</h3>
+          <form [formGroup]="teamForm" (ngSubmit)="onSubmit()">
+            <div class="mb-3">
+              <label class="form-label">Nazwa drużyny</label>
+              <input
+                formControlName="team_name"
+                class="form-control"
+                type="text"
+              />
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label">Aktywność</label>
+              <select
+                formControlName="activity_id"
+                class="form-select"
+              >
+                <option value="" disabled>Select activity</option>
+                <option
+                  *ngFor="let act of activities"
+                  [value]="act.id"
+                >
+                  {{ act.name }}
+                </option>
+              </select>
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label">Liczba graczy</label>
+              <input
+                formControlName="amount_players"
+                class="form-control"
+                type="number"
+                min="1"
+              />
+            </div>
+
+            <button
+              class="btn btn-primary"
+              type="submit"
+            >
+              Dodaj drużynę
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

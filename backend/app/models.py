@@ -49,7 +49,7 @@ class Teams(Base):
 
     team_id = Column(Integer, primary_key=True, index=True)
     team_name = Column(String(255), nullable=False)
-    activityID = Column(Integer, ForeignKey("activities.id"), nullable=False, index=True)
+    activity_id = Column(Integer, ForeignKey("activities.id"), nullable=False, index=True)
     amount_players = Column(Integer, nullable=False)
     amount_points = Column(Integer, nullable=False)
     is_verified = Column(Boolean, nullable=True)
