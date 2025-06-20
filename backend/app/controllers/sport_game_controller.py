@@ -29,7 +29,7 @@ class GameDetails(BaseModel):
     class Config: from_attributes = True
 
 class BookingTypeEnum(str, Enum):
-    NORMAL = "NORMAL"; TOURNAMENT = "TOURNAMENT"
+    NORMAL = "NORMAL"; TURNAMENT = "TURNAMENT"
 
 class SportsGameCreate(BaseModel):
     game_name: str; field_id: int; start_date: datetime; end_date: datetime

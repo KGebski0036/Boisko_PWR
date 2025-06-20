@@ -3,31 +3,31 @@
     <div class="col-md-8 col-lg-6">
       <div class="card shadow-lg">
         <div class="card-body">
-          <h2 class="mb-3">Add New Field</h2>
+          <h2 class="mb-3">Dodaj nowe boisko</h2>
 
           <form [formGroup]="fieldForm" (ngSubmit)="onSubmit()">
             <div class="mb-3">
-              <label class="form-label">Name</label>
+              <label class="form-label">Nazwa</label>
               <input type="text" class="form-control" formControlName="name" />
             </div>
 
             <div class="mb-3">
-              <label class="form-label">City</label>
+              <label class="form-label">Misto</label>
               <input type="text" class="form-control" formControlName="city" />
             </div>
 
             <div class="mb-3">
-              <label class="form-label">Address</label>
+              <label class="form-label">Adres</label>
               <input type="text" class="form-control" formControlName="address" />
             </div>
 
             <div class="mb-3">
-              <label class="form-label">Max Capacity</label>
+              <label class="form-label">Pojemność boiska (gracze)</label>
               <input type="number" class="form-control" formControlName="max_capacity" />
             </div>
 
             <div class="mb-3">
-            <label class="form-label">Activity</label>
+            <label class="form-label">Rodzaj aktywności na boisku</label>
             <select class="form-select" formControlName="activityID">
                 <option [ngValue]="null" disabled selected>Select an activity</option>
                 <option *ngFor="let activity of activities" [value]="activity.id">
@@ -37,18 +37,18 @@
             </div>
 
             <div class="mb-3">
-                <button type="submit" class="btn btn-primary">Submit</button><br>
+                <button type="submit" class="btn btn-success">Dodaj</button><br>
             </div>
             <div class="mb-3">
-                <button type="button" [routerLink]="['/fields']"  class="btn btn-secondary">back</button>
+                <button type="button" [routerLink]="['/fields']"  class="btn btn-danger">Anuluj</button>
             </div>
 
             <div *ngIf="submitted && fieldForm.invalid" class="text-danger mt-2">
-              Please fill out all required fields.
+              Wypełnij wszystkie dane
             </div>
 
             <div *ngIf="success" class="alert alert-success mt-2">
-              Field successfully added!
+              Dodano boisko
             </div>
           </form>
         </div>

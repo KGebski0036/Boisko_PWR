@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule, NgForOf, NgIf } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { TeamService, Team } from '../../services/team.service';
+import { Activite, ActiviteService } from '../../services/activite.service';
 
 @Component({
   selector: 'app-teams',
@@ -19,11 +20,13 @@ import { TeamService, Team } from '../../services/team.service';
 })
 export class TeamsComponent implements OnInit {
   teams: Team[] = [];
+  activities: Activite[] = [];
 
-  constructor(private teamService: TeamService) {}
+  constructor(private teamService: TeamService, private activityService: ActiviteService) {}
 
   ngOnInit(): void {
     this.loadTeams();
+    this.activityService.getActivites().subscribe(data => this.activities = data);
   }
 
   loadTeams(): void {
@@ -39,5 +42,10 @@ export class TeamsComponent implements OnInit {
       next: () => this.loadTeams(),
       error: err => console.error('Error verifying team', err)
     });
+  }
+
+  getActivityName(id: number): string {
+    const activity = this.activities.find(a => a.id === id);
+    return activity ? activity.name : 'Unknown';
   }
 }

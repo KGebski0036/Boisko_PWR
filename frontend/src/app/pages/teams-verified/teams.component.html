@@ -14,14 +14,13 @@
         <th>Graczy</th>
         <th>Punkty</th>
         <th>Zweryfikowana</th>
-        <th>Actions</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let team of teams">
         <td>{{ team.team_id }}</td>
         <td>{{ team.team_name }}</td>
-        <td>{{ team.activity_id }}</td>
+        <td>{{ getActivityName(team.activity_id) }}</td>
         <td>{{ team.amount_players }}</td>
         <td>{{ team.amount_points }}</td>
         <td>
@@ -31,15 +30,6 @@
           <ng-template #notVer>
             <span class="badge bg-secondary">Nie</span>
           </ng-template>
-        </td>
-        <td>
-          <button
-            *ngIf="!team.is_verified"
-            class="btn btn-sm btn-success"
-            (click)="verify(team.team_id)"
-          >
-            Zatwierdź
-          </button>
         </td>
       </tr>
     </tbody>

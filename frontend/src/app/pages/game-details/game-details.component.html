@@ -9,7 +9,7 @@
         </p>
 
         <!-- Sekcja dołączania i przycisk admina, widoczne TYLKO dla turniejów -->
-        <div *ngIf="game.booking_type === 'TOURNAMENT'" class="d-flex flex-wrap align-items-center gap-3 mt-4">
+        <div *ngIf="game.booking_type === 'TURNAMENT'" class="d-flex flex-wrap align-items-center gap-3 mt-4">
           <div class="input-group" style="max-width: 400px;">
             <select class="form-select" [formControl]="teamToJoin" id="teamSelect">
               <option [ngValue]="null" disabled>Wybierz drużynę...</option>
@@ -32,7 +32,7 @@
     </div>
 
     <!-- DOLNA KARTA: Lista uczestników - widoczna TYLKO dla turniejów -->
-    <div *ngIf="game.booking_type === 'TOURNAMENT'" class="card shadow-lg p-3">
+    <div *ngIf="game.booking_type === 'TURNAMENT'" class="card shadow-lg p-3">
       <div class="card-body">
         <h3 class="card-title">Zapisane drużyny ({{ game.teams_in_game.length }})</h3>
         <hr>

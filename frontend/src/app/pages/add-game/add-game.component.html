@@ -11,7 +11,7 @@
           </button>
         </li>
         <li class="nav-item">
-          <button class="nav-link" [class.active]="bookingType === 'TOURNAMENT'" (click)="setBookingType('TOURNAMENT')">
+          <button class="nav-link" [class.active]="bookingType === 'TURNAMENT'" (click)="setBookingType('TURNAMENT')">
             Turniej
           </button>
         </li>
@@ -48,7 +48,7 @@
         </div>
 
         <!-- Pole widoczne tylko dla turnieju -->
-        <div *ngIf="bookingType === 'TOURNAMENT'" class="mt-4">
+        <div *ngIf="bookingType === 'TURNAMENT'" class="mt-4">
           <label for="weight_tournament" class="form-label">Waga turnieju (punkty do rankingu)</label>
           <input id="weight_tournament" type="number" class="form-control" formControlName="weight_tournament" placeholder="np. 100">
           <div class="form-text">Waga turnieju określa jego prestiż i liczbę punktów do zdobycia w rankingu.</div>
@@ -58,7 +58,7 @@
         <div class="mt-4">
           <button class="btn btn-primary" type="submit" [disabled]="!gameForm.valid">
             <span *ngIf="bookingType === 'NORMAL'">Zarezerwuj i dodaj grę</span>
-            <span *ngIf="bookingType === 'TOURNAMENT'">Zgłoś turniej do weryfikacji</span>
+            <span *ngIf="bookingType === 'TURNAMENT'">Zgłoś turniej do weryfikacji</span>
           </button>
         </div>
 

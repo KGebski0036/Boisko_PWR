@@ -100,10 +100,10 @@ def create_team(
         amount_points=0,
         is_verified=False
     )
-    db.add(db_team)
+    db.add(team)
     db.commit()
-    db.refresh(db_team)
-    return db_team
+    db.refresh(team)
+    return team
 
 def get_teams_in_game(db: Session):
     return db.query(TeamsInGame).all()

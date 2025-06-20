@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 import { GameService, AddGame } from '../../services/game.service';
 import { FieldService, Field } from '../../services/field.service';
 
-type BookingType = 'NORMAL' | 'TOURNAMENT';
+type BookingType = 'NORMAL' | 'TURNAMENT';
 
 @Component({
   selector: 'app-add-game',
@@ -54,7 +54,7 @@ export class AddGameComponent implements OnInit {
     this.bookingType = type;
     const weightControl = this.gameForm.get('weight_tournament');
 
-    if (type === 'TOURNAMENT') {
+    if (type === 'TURNAMENT') {
       weightControl?.setValidators([Validators.required, Validators.min(1)]);
     } else {
       weightControl?.clearValidators();
@@ -79,7 +79,7 @@ export class AddGameComponent implements OnInit {
       return;
     }
 
-    const isTournament = this.bookingType === 'TOURNAMENT';
+    const isTournament = this.bookingType === 'TURNAMENT';
 
     const gameData: AddGame = {
       ...this.gameForm.value,

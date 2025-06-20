@@ -35,7 +35,7 @@ export class GameDetailsComponent implements OnInit {
     ).subscribe(gameDetails => {
       this.game = gameDetails;
       // Jeśli gra jest turniejem, ładujemy dostępne drużyny
-      if (this.game && this.game.booking_type === 'TOURNAMENT') {
+      if (this.game && this.game.booking_type === 'TURNAMENT') {
         this.loadAvailableTeams();
       }
     });
