@@ -1,15 +1,25 @@
-from fastapi import FastAPI, Depends
-from sqlalchemy.orm import Session
-from . import crud, models
-from .database import SessionLocal, engine
-from fastapi.middleware.cors import CORSMiddleware
-from pydantic import BaseModel
+# backend/app/main.py
 
-from app.controllers import fields_controller, activities_controller, sport_game_controller, teams_controller, teams_in_game_controller
+from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
+from sqlalchemy.orm import Session
+
+from .database import SessionLocal, engine
+from . import models
+from app.controllers import (
+    fields_controller,
+    activities_controller,
+    sport_game_controller,
+    teams_controller,
+    teams_in_game_controller,
+)
 
 models.Base.metadata.create_all(bind=engine)
 
-app = FastAPI()
+app = FastAPI(
+    title="System Boiskowy API",
+    version="1.0.0",
+)
 
 app.add_middleware(
     CORSMiddleware,

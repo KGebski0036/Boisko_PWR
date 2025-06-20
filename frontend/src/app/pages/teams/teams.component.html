@@ -1,1 +1,47 @@
-<p>teams works!</p>
+<!-- frontend/src/app/pages/teams/teams.component.html -->
+
+<div class="container mt-4">
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h3>Drużyny</h3>
+    <a routerLink="/addteam" class="btn btn-primary">Dodaj drużynę</a>
+  </div>
+  <table class="table table-bordered table-hover">
+    <thead class="table-light">
+      <tr>
+        <th>ID</th>
+        <th>Nazwa</th>
+        <th>Aktywność</th>
+        <th>Graczy</th>
+        <th>Punkty</th>
+        <th>Zweryfikowana</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let team of teams">
+        <td>{{ team.team_id }}</td>
+        <td>{{ team.team_name }}</td>
+        <td>{{ team.activityID }}</td>
+        <td>{{ team.amount_players }}</td>
+        <td>{{ team.amount_points }}</td>
+        <td>
+          <span *ngIf="team.is_verified; else notVer" class="badge bg-success">
+            Tak
+          </span>
+          <ng-template #notVer>
+            <span class="badge bg-secondary">Nie</span>
+          </ng-template>
+        </td>
+        <td>
+          <button
+            *ngIf="!team.is_verified"
+            class="btn btn-sm btn-success"
+            (click)="verify(team.team_id)"
+          >
+            Zatwierdź
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
