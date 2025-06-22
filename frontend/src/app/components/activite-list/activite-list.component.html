@@ -1,9 +1,13 @@
-<div class="container">
-  <h2>Lista aktywności</h2>
+<div class="card mt-4">
+  <div class="card-header bg-info text-dark">
+    Lista aktywności
+  </div>
 
   <div class="form-group">
-    <input [(ngModel)]="newActiviteName" placeholder="New Activite name" class="form-control" />
-    <button (click)="addActivite()" class="btn btn-primary mt-2">Add Activite</button>
+     <div class="input-group my-3">
+       <input [(ngModel)]="newActiviteName" placeholder="New Activite name" class="form-control" />
+       <button (click)="addActivite()" class="btn btn-primary">Add Activite</button>
+     </div>
   </div>
 
   <table class="table table-hover">

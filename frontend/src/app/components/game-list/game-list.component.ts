@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { GameService, Game } from '../../services/game.service';
 import { CommonModule } from '@angular/common';
+import { Field, FieldService } from '../../services/field.service';
 
 @Component({
   selector: 'app-game-list',
@@ -11,11 +12,19 @@ import { CommonModule } from '@angular/common';
 })
 export class GameListComponent implements OnInit {
   unverifiedGames: Game[] = [];
+  fields: Field[] = [];
 
-  constructor(private gameService: GameService) {}
+  constructor(private gameService: GameService, private fieldService: FieldService,) {}
 
   ngOnInit(): void {
     this.loadUnverifiedGames();
+    this.loadFields();
+  }
+
+  loadFields(): void {
+    this.fieldService.getFields().subscribe((data) => {
+      this.fields = data;
+    });
   }
 
   loadUnverifiedGames() {
@@ -28,5 +37,10 @@ export class GameListComponent implements OnInit {
     this.gameService.verifyGame(gameId).subscribe(() => {
       this.loadUnverifiedGames();
     });
+  }
+
+  getFieldName(fieldId: number): string {
+    const field = this.fields.find(f => f.id === fieldId);
+    return field ? field.name : 'Nieznane boisko';
   }
 }

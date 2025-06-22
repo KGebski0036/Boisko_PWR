@@ -9,6 +9,8 @@
       <div>
         <strong>{{ game.game_name }}</strong><br />
         {{ game.start_date | date:'short' }} – {{ game.end_date | date:'short' }}
+        <br>Boisko: {{getFieldName(game.field_id)}} 
+        <br>Waga: {{game.weight_tournament}}
       </div>
       <button class="btn btn-success btn-sm" (click)="verifyGame(game.game_id)">Zatwierdź</button>
     </li>

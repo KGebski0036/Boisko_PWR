@@ -7,7 +7,7 @@ import { TeamService, Team } from '../../services/team.service';
 import { Activite, ActiviteService } from '../../services/activite.service';
 
 @Component({
-  selector: 'app-teams',
+  selector: 'app-teams-verified',
   standalone: true,
   imports: [
     CommonModule,  // dla *ngFor i *ngIf
@@ -15,10 +15,10 @@ import { Activite, ActiviteService } from '../../services/activite.service';
     NgIf,
     RouterModule  // dla routerLink
   ],
-  templateUrl: './teams.component.html',
-  styleUrls: ['./teams.component.css']
+  templateUrl: './teams-verified.component.html',
+  styleUrls: ['./teams-verified.component.css']
 })
-export class TeamsComponent implements OnInit {
+export class TeamsVerifiedComponent implements OnInit {
   teams: Team[] = [];
   activities: Activite[] = [];
 
