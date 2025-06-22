@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { GameService, GameDetails } from '../../services/game.service';
 import { Team, TeamService } from '../../services/team.service';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
@@ -23,7 +23,8 @@ export class GameDetailsComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private gameService: GameService,
-    private teamService: TeamService
+    private teamService: TeamService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -70,6 +71,6 @@ export class GameDetailsComponent implements OnInit {
   }
 
   endTournament(): void {
-    alert("Funkcjonalność 'Zakończ turniej i wpisz wyniki' zostanie zaimplementowana.");
+    this.router.navigate(['/games/finish/' + this.game?.game_id]);
   }
 }

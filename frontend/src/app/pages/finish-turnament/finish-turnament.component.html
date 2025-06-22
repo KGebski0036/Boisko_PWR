@@ -1,0 +1,29 @@
+
+<div class="container mt-5">
+    <div *ngIf="game; else loading" class="details-wrapper">
+        <div *ngIf="game?.booking_type === 'TURNAMENT'" class="card shadow-lg p-3">
+            <div class="card-body">
+            <h3 class="card-title">Zapisane drużyny ({{ game.teams_in_game.length }})</h3>
+            <hr>
+
+
+
+            <div *ngIf="game.teams_in_game.length > 0; else noTeams" class="list-group list-group-flush">
+                <div *ngFor="let entry of game.teams_in_game" class="list-group-item border-0 d-flex justify-content-between align-items-center">
+                    <h5>{{ entry.team.team_name }}</h5>
+                    <select class="form-select w-auto ms-3"
+                            [(ngModel)]="placements[entry.team.team_id]">
+                        <option [ngValue]="null" disabled>Choose place</option>
+                        <option *ngFor="let place of placeOptions" [ngValue]="place">{{ place }}</option>
+                    </select>
+                </div>
+                <div class="mt-4 text-end">
+                    <button class="btn btn-success" (click)="finishTournament()">Finish Tournament</button>
+                </div>
+            </div>
+            <ng-template #noTeams><p class="text-muted">Brak zapisanych drużyn.</p></ng-template>
+            </div>
+        </div>
+    </div>
+    <ng-template #loading><p class="text-center fs-3">Ładowanie danych...</p></ng-template>
+</div>d

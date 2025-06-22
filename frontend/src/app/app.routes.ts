@@ -10,6 +10,7 @@ import { AddFieldComponent } from './pages/add-field/add-field.component';
 import { AddGameComponent } from './pages/add-game/add-game.component';
 import { GameDetailsComponent } from './pages/game-details/game-details.component';
 import { AddTeamComponent } from './pages/add-team/add-team.component';
+import { FinishTurnamentComponent } from './pages/finish-turnament/finish-turnament.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -21,5 +22,6 @@ export const routes: Routes = [
   { path: 'addfield', component: AddFieldComponent },
   { path: 'addgame', component: AddGameComponent },
   { path: 'games/:id', component: GameDetailsComponent },
+  { path: 'games/finish/:id', component: FinishTurnamentComponent },
   { path: '**', redirectTo: '', pathMatch: 'full' }
 ];

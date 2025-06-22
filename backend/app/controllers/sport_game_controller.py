@@ -1,3 +1,5 @@
+from sqlalchemy import Boolean
+from app.models import TeamsInGame
 from fastapi import APIRouter, Depends, HTTPException, Body
 from sqlalchemy.orm import Session
 from pydantic import BaseModel
@@ -36,6 +38,13 @@ class SportsGameCreate(BaseModel):
     booking_type: BookingTypeEnum
     weight_tournament: int | None = None
     is_tournament_verified: bool = False
+    
+class TournamentResult(BaseModel):
+    team_id: int
+    placed: int
+
+class FinishTournamentRequest(BaseModel):
+    results: list[TournamentResult]
 
 @router.get("/")
 def get_all_games(db: Session = Depends(get_db)):
@@ -69,3 +78,20 @@ def verify_game_endpoint(game_id: int, db: Session = Depends(get_db)):
     verified_game = crud.verify_game(db, game_id=game_id)
     if verified_game is None: raise HTTPException(status_code=404, detail="Game to verify not found")
     return verified_game
+
+@router.patch("/{game_id}/finish")
+def finish_tournament(game_id: int, payload: FinishTournamentRequest, db: Session = Depends(get_db)):
+    game = crud.get_game_by_id(db, game_id)
+    
+    for result in payload.results:
+        link = db.query(TeamsInGame).filter_by(tournament_id=game_id, team_id=result.team_id).first()
+        if link:
+            link.placed = result.placed
+
+            team = crud.get_team_by_id(db, result.team_id)
+            if team:
+                points = max(100 - (result.placed - 1) * 30, 10)
+                team.amount_points += points
+
+    db.commit()
+    return {"message": "Tournament finished"}

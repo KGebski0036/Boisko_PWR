@@ -74,4 +74,9 @@ export class GameService {
   verifyGame(gameId: number): Observable<Game> {
     return this.http.patch<Game>(`${this.apiUrl}${gameId}/verify`, {});
   }
+
+  finishTournament(gameId: number, results: { team_id: number, placed: number }[]): Observable<any> {
+    console.log(results);
+    return this.http.patch(`${this.apiUrl}${gameId}/finish`, { results });
+  }
 }
