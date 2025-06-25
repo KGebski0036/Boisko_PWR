@@ -82,16 +82,20 @@ def verify_game_endpoint(game_id: int, db: Session = Depends(get_db)):
 @router.patch("/{game_id}/finish")
 def finish_tournament(game_id: int, payload: FinishTournamentRequest, db: Session = Depends(get_db)):
     game = crud.get_game_by_id(db, game_id)
-    
+    weight = game.weight_tournament
+
     for result in payload.results:
         link = db.query(TeamsInGame).filter_by(tournament_id=game_id, team_id=result.team_id).first()
-        if link:
-            link.placed = result.placed
+        if not link:
+            continue
+        link.placed = result.placed
 
-            team = crud.get_team_by_id(db, result.team_id)
-            if team:
-                points = max(100 - (result.placed - 1) * 30, 10)
-                team.amount_points += points
+        team = crud.get_team_by_id(db, result.team_id)
+        if team and result.placed > 0:
+            points_for_team = (1 / result.placed) * weight
+            team.amount_points += int(points_for_team)
 
+            db.add(team)
+            db.add(link)
     db.commit()
     return {"message": "Tournament finished"}
