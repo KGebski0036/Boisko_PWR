@@ -8,7 +8,7 @@ Installation and Configuration
 
     cd Boisko_PWR
 
-3. Copy the environment file:
+2. Copy the environment file:
   cp .env.example .env
 
 Edit the .env file and configure environment variables as needed.
