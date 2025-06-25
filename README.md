@@ -5,6 +5,7 @@ Installation and Configuration
 
 1. Clone the repository:
   git clone https://github.com/KGebski0036/Boisko_PWR.git
+
     cd Boisko_PWR
 
 2. Copy the environment file:
